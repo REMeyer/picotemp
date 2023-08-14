@@ -2,7 +2,6 @@
 // Simple pi pico-based temperature station.
 // 
 // author: R Elliot Meyer
-// version: 1.0.0
 // date: 2022
 //
 ////////////////////////////////////////////////////////////////////////////////
@@ -16,12 +15,9 @@
 static int addr = 0x44;
 #define I2C_PORT i2c1
 
-// Base communication functions copied and updated
-// from pico example scripts.
+// Base communication functions adapted from pico example scripts.
 static void sht40_reset() {
     // Two byte reset. First byte register, second byte data
-    // There are a load more options to set up the device in 
-    // different ways that could be added here
     uint8_t buf = 0x06;
     i2c_write_blocking(I2C_PORT, 0x00, &buf, 1, false);
 }
@@ -30,7 +26,7 @@ static void sht40_read_raw(int16_t *t_ticks, int16_t *rh_ticks) {
 
         uint8_t buffer[6];
 
-        // Start reading acceleration registers from register 0x3B for 6 bytes
+        // Start reading registers from register 0xFD for 6 bytes
         // 0xFD address measures T & H with high precision
         uint8_t val = 0xFD;
         i2c_write_blocking(I2C_PORT, addr, &val, 1, true); // true to keep master control of bus
