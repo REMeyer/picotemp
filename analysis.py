@@ -54,7 +54,7 @@ def subplot_env(df, mask, title=''):
 
     ax.plot(df['datetime'][mask], df['temp'][mask], color='tab:red', label='T (deg C)')
     ax.set_ylabel('T (deg C)', color='tab:red')
-    ax.xaxis.set_major_formatter(dates.DateFormatter('%m-%d %H:%M'))
+    ax.xaxis.set_major_formatter(dates.DateFormatter('%m-%d %Hh'))
     ax.tick_params(axis='x', labelrotation=20)
     ax.tick_params(axis='y', color='tab:red', labelcolor='tab:red')
     ax.tick_params(axis='both', labelsize=13)
@@ -80,8 +80,8 @@ def plot_env_data(df):
     last6 = df['datetime'] >= df['datetime'].iloc[-1] - np.timedelta64(6, 'h')
 
     fig, ax, ax2 = subplot_env(df, last72, title="Last 72 Hours")
-    ax.xaxis.set_major_locator(dates.HourLocator(interval = 6))
-    ax.xaxis.set_minor_locator(dates.HourLocator(interval = 2))
+    ax.xaxis.set_major_locator(dates.HourLocator(interval = 12))
+    ax.xaxis.set_minor_locator(dates.HourLocator(interval = 4))
     plt.savefig('/home/meyer/readtemp/web/last72.png', dpi=100)
 
     fig, ax, ax2 = subplot_env(df, last24, title='Last 24 Hours')
