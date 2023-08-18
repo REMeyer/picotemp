@@ -13,7 +13,7 @@ The pico circuit contains:
 
 The circuit is summarized in the following diagram.
 
-![Pico Circuit](picotemp_circuit.png)
+![Pico Circuit](images/picotemp_circuit.png)
 
 As written and connected as above, the tricolour LED will glow,
 
@@ -44,3 +44,7 @@ This will produce output like,
 which can be parsed by analysis.py.
 
 Running web/server.py in the background will start a localserver that will show figures of the last 6, 24, and 72 hours of environmental data. I suggest adding a cronjob that runs analysis.py every 15 or so minutes to update these plots automatically.
+
+The result is a simple local webpage as in the image below.
+
+![Home Environment](images/HomeMonitoring.png)
